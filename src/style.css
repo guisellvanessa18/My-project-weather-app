@@ -1,0 +1,70 @@
+hr {
+  width: 250px;
+  height: 10px;
+  color: rgb(182, 60, 162);
+  margin-bottom: 0;
+}
+h2 {
+  margin-bottom: 20px;
+}
+.more-info {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.description {
+  text-align: center;
+  position: relative;
+  left: 30px;
+  top: -10px;
+  width: 330px;
+}
+.update {
+  border-radius: 90px;
+  width: 40px;
+  height: 40px;
+  border-color: rgb(182, 60, 162);
+  background-color: rgb(245, 226, 245);
+  position: relative;
+  right: -150px;
+  top: -20px;
+}
+.updated-hour {
+  position: relative;
+  top: -25px;
+  right: -45px;
+}
+.name {
+  color: rgb(182, 60, 162);
+  text-align: center;
+  position: relative;
+  top: 40px;
+  font-size: 33px;
+  font-weight: bold;
+}
+.weather-city {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline-block;
+}
+.fa-sun {
+  color: black;
+  font-size: 45px;
+}
+.bigone {
+  color: black;
+  font-size: 65px;
+}
+.temperature {
+  font-size: 45px;
+}
+.city-name {
+  padding: 10px;
+  margin: 10px;
+  width: 175px;
+  height: 175px;
+  border: 7px solid rgba(216, 151, 211, 0.74);
+  background-color: rgb(245, 226, 245);
+  border-radius: 110px;
+  position: relative;
+  top: 20px;
+}
