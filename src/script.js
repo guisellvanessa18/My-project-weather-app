@@ -38,12 +38,15 @@ function showTemperatureMilan(response){
     let maxTemperatureElement= document.querySelector("#temp-max");
     let minTemperatureElement= document.querySelector("#temp-min");
     let windElement= document.querySelector("#wind");
+    let iconElement=document.querySelector("#icon");
+
     temperatureElement.innerHTML=Math.round(response.data.main.temp);
     cityElement.innerHTML=response.data.name;
     descriptionElement.innerHTML=response.data.weather[0].description;
     maxTemperatureElement.innerHTML=Math.round(response.data.main.temp_max);
     minTemperatureElement.innerHTML=Math.round(response.data.main.temp_min);
     windElement.innerHTML=Math.round(response.data.wind.speed);
+    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 let apiKey="ca83b4336e75948497b41c37ff204aba";
@@ -78,6 +81,9 @@ function showTemperature (response){
 
     let windElement= document.querySelector("#wind");
     windElement.innerHTML=Math.round(response.data.wind.speed);
+
+    let iconElement=document.querySelector("#icon");
+    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 let form = document.querySelector("#search-form");
@@ -155,6 +161,9 @@ function showCurrentCityTemperature (response){
 
     let windElement= document.querySelector("#wind");
     windElement.innerHTML=Math.round(response.data.wind.speed);
+
+    let iconElement=document.querySelector("#icon");
+    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 function showPosition(position){
