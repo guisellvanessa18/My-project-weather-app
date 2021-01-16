@@ -30,6 +30,18 @@ currentDay.innerHTML=day;
 
 console.log(time.getDay()+1);
 
+function showTemperatureMilan(response){
+    console.log(response.data.main.temp);
+    let temperatureElement= document.querySelector("#temperature");
+    temperatureElement.innerHTML=response.data.main.temp;
+}
+
+let apiKey="ca83b4336e75948497b41c37ff204aba";
+let apiUrlCity="https://api.openweathermap.org/data/2.5/weather?q=";
+
+axios.get(`${apiUrlCity}Milan&appid=${apiKey}&units=metric`).then(showTemperatureMilan);
+
+
 function showTemperature (response){
   console.log(response.data);
   console.log(response.data.main.temp);
