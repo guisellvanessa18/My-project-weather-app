@@ -39,6 +39,7 @@ function showTemperatureMilan(response){
     let minTemperatureElement= document.querySelector("#temp-min");
     let windElement= document.querySelector("#wind");
     let iconElement=document.querySelector("#icon");
+    celsiusTemperature= response.data.main.temp;
 
     temperatureElement.innerHTML=Math.round(response.data.main.temp);
     cityElement.innerHTML=response.data.name;
@@ -61,6 +62,8 @@ function showTemperature (response){
 
   let nameSearched= document.querySelector("#name-searched");
   nameSearched.innerHTML=response.data.name;
+
+  celsiusTemperature= response.data.main.temp;
 
   let temperatureRounded=Math.round(response.data.main.temp);
   let temperatureElement= document.querySelector("#temperature");
@@ -106,28 +109,18 @@ form.addEventListener("submit", search);
 function fahrenheitTemp(event){
   event.preventDefault();
   let temperatureElement=document.querySelector("#temperature");
-  let temperature= temperatureElement.innerHTML;
-  temperature= Number(temperature);
-  temperatureElement.innerHTML= Math.round((temperature*9)/5 + 32);
+  temperatureElement.innerHTML= Math.round((celsiusTemperature*9)/5 + 32);
 }
 
 
 function celsiusTemp(event){
   event.preventDefault();
   let temperatureElement=document.querySelector("#temperature");
-  let temperature= temperatureElement.innerHTML;
-  temperature= Number(temperature);
-  if (temperature===25){
-    temperatureElement.innerHTML=25;
-  }
-  else{
-    temperatureElement.innerHTML= Math.round((temperature - 32)*5/9);
-  }
-  
+  temperatureElement.innerHTML= Math.round(celsiusTemperature);
 }
 
 
-
+let celsiusTemperature= null;
 let temperature= document.querySelector("#temperature");
 let fahrenheit=document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", fahrenheitTemp);
@@ -145,6 +138,7 @@ function showCurrentCityTemperature (response){
   temperatureElement.innerHTML=temperatureRounded;
   let currentCityName= document.querySelector("#name-searched");
   currentCityName.innerHTML=response.data.name;
+  celsiusTemperature= response.data.main.temp;
 
   let temperatureMinRounded=Math.round(response.data.main.temp_min);
   let temperatureMaxRounded=Math.round(response.data.main.temp_max);
