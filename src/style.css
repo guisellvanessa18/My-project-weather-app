@@ -68,6 +68,9 @@ h2 {
   position: relative;
   top: 20px;
 }
+p {
+  text-transform: capitalize;
+}
 .link-source {
   text-decoration: none;
   color: #007bff;

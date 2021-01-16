@@ -33,7 +33,17 @@ console.log(time.getDay()+1);
 function showTemperatureMilan(response){
     console.log(response.data.main.temp);
     let temperatureElement= document.querySelector("#temperature");
-    temperatureElement.innerHTML=response.data.main.temp;
+    let cityElement= document.querySelector("#name-searched");
+    let descriptionElement= document.querySelector("#weather-description");
+    let maxTemperatureElement= document.querySelector("#temp-max");
+    let minTemperatureElement= document.querySelector("#temp-min");
+    let windElement= document.querySelector("#wind");
+    temperatureElement.innerHTML=Math.round(response.data.main.temp);
+    cityElement.innerHTML=response.data.name;
+    descriptionElement.innerHTML=response.data.weather[0].description;
+    maxTemperatureElement.innerHTML=Math.round(response.data.main.temp_max);
+    minTemperatureElement.innerHTML=Math.round(response.data.main.temp_min);
+    windElement.innerHTML=Math.round(response.data.wind.speed);
 }
 
 let apiKey="ca83b4336e75948497b41c37ff204aba";
@@ -45,6 +55,10 @@ axios.get(`${apiUrlCity}Milan&appid=${apiKey}&units=metric`).then(showTemperatur
 function showTemperature (response){
   console.log(response.data);
   console.log(response.data.main.temp);
+
+  let nameSearched= document.querySelector("#name-searched");
+  nameSearched.innerHTML=response.data.name;
+
   let temperatureRounded=Math.round(response.data.main.temp);
   let temperatureElement= document.querySelector("#temperature");
   temperatureElement.innerHTML=temperatureRounded;
@@ -61,6 +75,9 @@ function showTemperature (response){
     let weatherDescriptionElement= response.data.weather[0].description;
     let weatherDescription= document.querySelector("#weather-description");
     weatherDescription.innerHTML= weatherDescriptionElement;
+
+    let windElement= document.querySelector("#wind");
+    windElement.innerHTML=Math.round(response.data.wind.speed);
 }
 
 let form = document.querySelector("#search-form");
@@ -135,6 +152,9 @@ function showCurrentCityTemperature (response){
     let weatherDescriptionElement= response.data.weather[0].description;
     let weatherDescription= document.querySelector("#weather-description");
     weatherDescription.innerHTML= weatherDescriptionElement;
+
+    let windElement= document.querySelector("#wind");
+    windElement.innerHTML=Math.round(response.data.wind.speed);
 }
 
 function showPosition(position){
