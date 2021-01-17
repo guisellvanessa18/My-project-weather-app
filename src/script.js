@@ -56,7 +56,7 @@ function displayForecast(response){
     let forecast= null;
     let index= null;
     forecastElement.innerHTML=null;
-    for(index=8;index<40;index=index+7){
+    for(index=7;index<40;index=index+7){
     forecast= response.data.list[index];
     let nameNextDays= formatDate(forecast.dt*1000);
     let nameFirstLetters=nameNextDays.substring(0,3);
@@ -65,6 +65,7 @@ function displayForecast(response){
     `<div class="card text-center" >
         <div class="card-body" >
             <h5 class="card-title">${nameFirstLetters}</h5>
+            <p>${formatHours(forecast.dt*1000)}</p>
             <img 
             src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
             alt=""
