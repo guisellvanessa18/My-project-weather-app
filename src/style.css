@@ -20,8 +20,9 @@ h2 {
 }
 .update {
   border-radius: 90px;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
   border-color: rgb(182, 60, 162);
   background-color: rgb(245, 226, 245);
   position: relative;

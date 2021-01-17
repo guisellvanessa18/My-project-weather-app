@@ -242,3 +242,21 @@ currentCity.addEventListener("click", getCurrentPosition);
 
 
 
+//function handleClick(event){
+    //alert("it's working");
+    //let nameCityPresent= document.querySelector("#name-searched");
+    
+  //let apiKey="ca83b4336e75948497b41c37ff204aba";
+  //let apiUrlCity="https://api.openweathermap.org/data/2.5/weather?q=";
+
+ // axios.get(`${apiUrlCity}${nameCityPresent}&appid=${apiKey}&units=metric`).then(showTemperature);
+
+  //apiUrlCity="https://api.openweathermap.org/data/2.5/forecast?q=";
+  //axios.get(`${apiUrlCity}${nameCityPresent}&appid=${apiKey}&units=metric`).then(displayForecast);
+
+//}
+
+let buttonUpdate= document.querySelector("#update-button");
+buttonUpdate.addEventListener("click", handleClick);
+
+
