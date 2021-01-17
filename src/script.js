@@ -1,17 +1,7 @@
 
 // write your code here
-
-let currentDay = document.querySelector("#current-day");
-
-function addZero(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-let time= new Date();
-let week= [
+let date= new Date();
+let days= [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -19,11 +9,33 @@ let week= [
   "Thursday",
   "Friday",
   "Saturday"
+  
 ]
-let day =week[time.getDay()];
+let currentDay = document.querySelector("#current-day");
+let day =days[date.getDay()];
 currentDay.innerHTML=day;
 
+
 function formatDate(timestamp){
+
+let date= new Date(timestamp);
+let days= [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+  
+]
+console.log(date.getDay());
+let day =days[date.getDay()];
+console.log(day);
+return `${day}`;
+}
+
+function formatHours(timestamp){
     //calculate the hour
     let date=new Date(timestamp);
     let hours= date.getHours();
@@ -38,8 +50,32 @@ function formatDate(timestamp){
 }
 
 function displayForecast(response){
-    console.log(response.data.main);
+   
     let forecastElement= document.querySelector("#forecast");
+    console.log(response.data);
+    let forecast= null;
+    let index= null;
+    forecastElement.innerHTML=null;
+    for(index=8;index<40;index=index+7){
+    forecast= response.data.list[index];
+
+    forecastElement.innerHTML += 
+    `<div class="card text-center" >
+        <div class="card-body" >
+            <h5 class="card-title">${formatDate(forecast.dt*1000)}</h5>
+            <img 
+            src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+            alt=""
+            </img>
+            <br />
+            <br />
+            <p class="card-text"><strong>${Math.round(forecast.main.temp_max)}°</strong> ${Math.round(forecast.main.temp_min)}°</p>
+        </div>
+    </div>`
+
+    }
+
+   
 }
 
 function showTemperatureMilan(response){
@@ -52,6 +88,7 @@ function showTemperatureMilan(response){
     let windElement= document.querySelector("#wind");
     let iconElement=document.querySelector("#icon");
     let currentHourElement = document.querySelector("#current-hour");
+   
     celsiusTemperature= response.data.main.temp;
 
     temperatureElement.innerHTML=Math.round(response.data.main.temp);
@@ -61,7 +98,8 @@ function showTemperatureMilan(response){
     minTemperatureElement.innerHTML=Math.round(response.data.main.temp_min);
     windElement.innerHTML=Math.round(response.data.wind.speed);
     iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-    currentHourElement.innerHTML= formatDate(response.data.dt*1000); 
+    currentHourElement.innerHTML= formatHours(response.data.dt*1000); 
+   
 }
 
 let apiKey="ca83b4336e75948497b41c37ff204aba";
@@ -88,21 +126,23 @@ function showTemperature (response){
 
   let temperatureMinElement= document.querySelector("#temp-min");
   temperatureMinElement.innerHTML=temperatureMinRounded;
-   let temperatureMaxElement= document.querySelector("#temp-max");
-    temperatureMaxElement.innerHTML=temperatureMaxRounded;
+  let temperatureMaxElement= document.querySelector("#temp-max");
+  temperatureMaxElement.innerHTML=temperatureMaxRounded;
 
-    let weatherDescriptionElement= response.data.weather[0].description;
-    let weatherDescription= document.querySelector("#weather-description");
-    weatherDescription.innerHTML= weatherDescriptionElement;
+  let weatherDescriptionElement= response.data.weather[0].description;
+  let weatherDescription= document.querySelector("#weather-description");
+  weatherDescription.innerHTML= weatherDescriptionElement;
 
-    let windElement= document.querySelector("#wind");
-    windElement.innerHTML=Math.round(response.data.wind.speed);
+  let windElement= document.querySelector("#wind");
+  windElement.innerHTML=Math.round(response.data.wind.speed);
 
-    let iconElement=document.querySelector("#icon");
-    iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  let iconElement=document.querySelector("#icon");
+  iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     
-    let currentHourElement = document.querySelector("#current-hour");
-    currentHourElement.innerHTML= formatDate(response.data.dt*1000); 
+  let currentHourElement = document.querySelector("#current-hour");
+  currentHourElement.innerHTML= formatHours(response.data.dt*1000); 
+  
+  
 }
 
 let form = document.querySelector("#search-form");
@@ -173,7 +213,9 @@ function showCurrentCityTemperature (response){
   iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
   let currentHourElement = document.querySelector("#current-hour");
-  currentHourElement.innerHTML= formatDate(response.data.dt*1000); 
+  currentHourElement.innerHTML= formatHours(response.data.dt*1000); 
+
+  
 }
 
 function showPosition(position){
