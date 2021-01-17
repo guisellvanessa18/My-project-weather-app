@@ -58,16 +58,17 @@ function displayForecast(response){
     forecastElement.innerHTML=null;
     for(index=8;index<40;index=index+7){
     forecast= response.data.list[index];
+    let nameNextDays= formatDate(forecast.dt*1000);
+    let nameFirstLetters=nameNextDays.substring(0,3);
 
     forecastElement.innerHTML += 
     `<div class="card text-center" >
         <div class="card-body" >
-            <h5 class="card-title">${formatDate(forecast.dt*1000)}</h5>
+            <h5 class="card-title">${nameFirstLetters}</h5>
             <img 
             src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
             alt=""
             </img>
-            <br />
             <br />
             <p class="card-text"><strong>${Math.round(forecast.main.temp_max)}°</strong> ${Math.round(forecast.main.temp_min)}°</p>
         </div>
