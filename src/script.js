@@ -223,14 +223,19 @@ function showPosition(position){
 
   let latitude= position.coords.latitude;
   let longitude=position.coords.longitude; 
+  console.log(position.coords.latitude);
+  console.log(position.coords.longitude);
+
 
   let apiKey="ca83b4336e75948497b41c37ff204aba";
   let apiUrlCity="https://api.openweathermap.org/data/2.5/weather?";
 
   axios.get(`${apiUrlCity}lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`).then(showCurrentCityTemperature);
 
-  apiUrlCity="https://api.openweathermap.org/data/2.5/forecast?q=";
-  axios.get(`${apiUrlCity}${searchCity.value}&appid=${apiKey}&units=metric`).then(displayForecast);
+  apiUrlCity="https://api.openweathermap.org/data/2.5/forecast?";
+  axios.get(`${apiUrlCity}lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`).then(displayForecast);
+    
+ 
 }
 
 function getCurrentPosition(){
@@ -256,7 +261,7 @@ currentCity.addEventListener("click", getCurrentPosition);
 
 //}
 
-let buttonUpdate= document.querySelector("#update-button");
-buttonUpdate.addEventListener("click", handleClick);
+//let buttonUpdate= document.querySelector("#update-button");
+//buttonUpdate.addEventListener("click", handleClick);
 
 
